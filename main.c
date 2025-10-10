@@ -13,10 +13,11 @@ void main(void)
 	
 	while(1){
 	    lcd_bl_on();
-	    volatile int int_result = calc_int(200, 300);
+	    volatile int int_result = calc_int(20, 30);
 	    lcd_bl_off();
+	    wait_in_us(500);
 	    lcd_bl_on();
-	    volatile float float_result = 123.45f * 67.89f;
+	    volatile float float_result = 20.00f * 30.00f;
 	    lcd_bl_off();
 	    wait_in_us(1000);
 	}
