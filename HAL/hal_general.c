@@ -3,6 +3,8 @@
 #include "hal_wdt.h"
 #include "hal_gpio.h"
 
+ButtonCom buttonCom;    //die echte globale Variable (wird hier definiert)
+
 void hal_Init(void)
 {
     hal_WdtInit();

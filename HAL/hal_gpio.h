@@ -9,12 +9,14 @@
 
 #define LCD_BL BIT0 //für Oscimessungen
 
-void hal_GpioInit(void);
 
-void lcd_bl_on(void);
-void lcd_bl_off(void);
-int calc_int(int a, int b);
-void wait_in_us(int us);
+//eine Datenstruktur definieren:
+typedef struct {
+    unsigned char active; // TRUE = 1 / FALSE = 0
+    unsigned char button; // Button number
+} ButtonCom;
+
+void hal_GpioInit(void);
 
 
 #endif
