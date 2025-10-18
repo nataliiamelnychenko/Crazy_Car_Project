@@ -2,7 +2,7 @@
 #include "hal_general.h"
 #include "hal_gpio.h"
 
-extern ButtonCom buttonCom;  //Variable aus hal_general.c
+extern volatile ButtonCom buttonCom;  //Variable aus hal_general.c
 
 /**
  * main.c
@@ -17,10 +17,10 @@ void main(void)
 	        switch (buttonCom.button) //welche Knopf?
 	                {
 	        case 1: //Start-Knopf
-	            P1OUT |= I2C_INT_MOTION;    //beleuchtung ein
+	            P8OUT |=  LCD_BL;    //beleuchtung ein
 	            break;
 	            case 2: //Stop-Knopf
-	                P1OUT &= ~I2C_INT_MOTION;   //beleuchtung aus
+	                P8OUT &= ~LCD_BL;   //beleuchtung aus
 	                break;
 	                default:
 	                    break;

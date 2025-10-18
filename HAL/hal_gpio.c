@@ -2,7 +2,7 @@
 
 #include <msp430.h>
 
-extern ButtonCom buttonCom;  //deklariert als externe globale Variable - echt existiert in hal_general.c
+extern volatile ButtonCom buttonCom;  //deklariert als externe globale Variable - echt existiert in hal_general.c
 
 void hal_GpioInit(void)
 {
@@ -11,13 +11,13 @@ void hal_GpioInit(void)
     P1DIR &= ~START_BUTTON; //als Eingang konfiguriert
     P1DIR &= ~STOP_BUTTON; //als Eingang konfiguriert
 
-    P1DIR |= I2C_INT_MOTION;
+    P8DIR |= LCD_BL;
 
 
     // Unbenutzte pins in output low setzen:
     P1SEL  &= ~(BIT2 | BIT1 | BIT0);   // GPIO
-    P1DIR  |=  (BIT2 | BIT1 | BIT0);   // output
-    P1OUT  &= ~(BIT2 | BIT1 | BIT0);   // low setzen
+    P1DIR  |=  (BIT2 | BIT1);   // output
+    P1OUT  &= ~(BIT2 | BIT1);   // low setzen
 
     P1REN |= (START_BUTTON | STOP_BUTTON); //Pull-Up/Down aktivieren
     P1OUT |= (START_BUTTON | STOP_BUTTON);       // Pull-Up auswählen

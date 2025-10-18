@@ -3,11 +3,12 @@
 
 #define RPM_SENSOR BIT3 //in
 #define RPM_SENSOR_DIR BIT4 //in
-#define I2C_INT_MOTION BIT5 //out
-#define START_BUTTON BIT6 //in
-#define STOP_BUTTON BIT7 //in
+#define LCD_BL BIT0 //out
+#define START_BUTTON BIT7 //in
+#define STOP_BUTTON BIT6 //in
 
-#define LCD_BL BIT0 //für Oscimessungen
+
+
 
 
 //eine Datenstruktur definieren:
