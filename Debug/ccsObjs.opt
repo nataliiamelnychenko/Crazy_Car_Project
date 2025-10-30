@@ -2,6 +2,8 @@
 "./HAL/hal_general.obj"
 "./HAL/hal_gpio.obj"
 "./HAL/hal_pmm.obj"
+"./HAL/hal_timerB0.obj"
+"./HAL/hal_ucs.obj"
 "./HAL/hal_wdt.obj"
 "../lnk_msp430f5335.cmd"
 -llibmath.a

@@ -10,7 +10,9 @@ extern volatile ButtonCom buttonCom;  //Variable aus hal_general.c
 void main(void)
 {
     hal_Init();
-	
+
+    __enable_interrupt();
+
 	while(1){
 	    if (buttonCom.active == 1)
 	    {

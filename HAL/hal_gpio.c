@@ -12,6 +12,11 @@ void hal_GpioInit(void)
     P1DIR &= ~STOP_BUTTON; //als Eingang konfiguriert
 
     P8DIR |= LCD_BL;
+    P8SEL &= ~LCD_BL;
+
+    //SMCLK
+    P3DIR |= BIT4;   //Ausgang
+    P3SEL |= BIT4;   //SMCLK (nicht GPIO)
 
 
     // Unbenutzte pins in output low setzen:
@@ -19,17 +24,27 @@ void hal_GpioInit(void)
     P1DIR  |=  (BIT2 | BIT1);   // output
     P1OUT  &= ~(BIT2 | BIT1);   // low setzen
 
+    //STOP/START
     P1REN |= (START_BUTTON | STOP_BUTTON); //Pull-Up/Down aktivieren
-    P1OUT |= (START_BUTTON | STOP_BUTTON);       // Pull-Up auswählen
-
+    P1OUT |= (START_BUTTON | STOP_BUTTON);       //Pull-Up auswählen
     P1IE |= START_BUTTON; //Aktivierung des Interrupts
     P1IE |= STOP_BUTTON; //Aktivierung des Interrupts
-
     P1IES |= (START_BUTTON | STOP_BUTTON); //fallende Flanke(1-0)
-
     P1IFG &= ~(START_BUTTON | STOP_BUTTON); // gelöscht in der ISR
 
+
+
     __enable_interrupt(); //Aktivierung des GIE(Global Interrupt Enable)-Bit(erlaubt alle Interrupts)
+
+
+    //Quarz Pins:
+    P7SEL |= (XT2IN_P7 | XT2OUT_P7); //nicht GPIO, ein Modul!
+    P7DIR &= ~(XT2IN_P7 | XT2OUT_P7); //als Eingangs
+    P7REN &= ~(XT2IN_P7 | XT2OUT_P7); //ohne Pull-Up/Down
+    P7OUT &= ~(XT2IN_P7 | XT2OUT_P7); //kein Signal an – es übernimmt UCS
+
+
+
 
 }
 
