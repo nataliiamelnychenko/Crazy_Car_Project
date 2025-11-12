@@ -11,10 +11,12 @@ GEN_CMDS__FLAG :=
 
 ORDERED_OBJS += \
 "./main.obj" \
+"./DL/dl_Aktorik.obj" \
+"./DL/dl_General.obj" \
 "./HAL/hal_general.obj" \
 "./HAL/hal_gpio.obj" \
 "./HAL/hal_pmm.obj" \
-"./HAL/hal_timerB0.obj" \
+"./HAL/hal_timerA1.obj" \
 "./HAL/hal_ucs.obj" \
 "./HAL/hal_wdt.obj" \
 "../lnk_msp430f5335.cmd" \
@@ -30,8 +32,10 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include DL/subdir_vars.mk
 -include HAL/subdir_vars.mk
 -include subdir_rules.mk
+-include DL/subdir_rules.mk
 -include HAL/subdir_rules.mk
 -include objects.mk
 
@@ -129,29 +133,29 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-Car_Project\ 3\ Clock\ System,\ TimerB0.out 
+Car_Project\ 4\ PWM-Erzeugung,\ Aktorik.out 
 
 EXE_OUTPUTS__QUOTED += \
-"Car_Project 3 Clock System, TimerB0.out" 
+"Car_Project 4 PWM-Erzeugung, Aktorik.out" 
 
 
 # All Target
 all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "Car_Project 3 Clock System, TimerB0.out"
+	@$(MAKE) --no-print-directory -Onone "Car_Project 4 PWM-Erzeugung, Aktorik.out"
 
 # Tool invocations
-Car_Project\ 3\ Clock\ System,\ TimerB0.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
+Car_Project\ 4\ PWM-Erzeugung,\ Aktorik.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: MSP430 Linker'
-	"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted -Ooff --use_hw_mpy=F5 --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 -z -m"Car_Project 3 Clock System, TimerB0.map" --heap_size=160 --stack_size=160 --cinit_hold_wdt=on -i"C:/ti/ccs1281/ccs/ccs_base/msp430/include" -i"C:/ti/ccs1281/ccs/ccs_base/msp430/lib/5xx_6xx_FRxx" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/lib" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Car_Project 3 Clock System, TimerB0_linkInfo.xml" --use_hw_mpy=F5 --rom_model -o "Car_Project 3 Clock System, TimerB0.out" $(ORDERED_OBJS)
+	"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted -Ooff --use_hw_mpy=F5 --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 -z -m"Car_Project 4 PWM-Erzeugung, Aktorik.map" --heap_size=160 --stack_size=160 --cinit_hold_wdt=on -i"C:/ti/ccs1281/ccs/ccs_base/msp430/include" -i"C:/ti/ccs1281/ccs/ccs_base/msp430/lib/5xx_6xx_FRxx" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/lib" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Car_Project 4 PWM-Erzeugung, Aktorik_linkInfo.xml" --use_hw_mpy=F5 --rom_model -o "Car_Project 4 PWM-Erzeugung, Aktorik.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "HAL\hal_general.obj" "HAL\hal_gpio.obj" "HAL\hal_pmm.obj" "HAL\hal_timerB0.obj" "HAL\hal_ucs.obj" "HAL\hal_wdt.obj" 
-	-$(RM) "main.d" "HAL\hal_general.d" "HAL\hal_gpio.d" "HAL\hal_pmm.d" "HAL\hal_timerB0.d" "HAL\hal_ucs.d" "HAL\hal_wdt.d" 
+	-$(RM) "main.obj" "DL\dl_Aktorik.obj" "DL\dl_General.obj" "HAL\hal_general.obj" "HAL\hal_gpio.obj" "HAL\hal_pmm.obj" "HAL\hal_timerA1.obj" "HAL\hal_ucs.obj" "HAL\hal_wdt.obj" 
+	-$(RM) "main.d" "DL\dl_Aktorik.d" "DL\dl_General.d" "HAL\hal_general.d" "HAL\hal_gpio.d" "HAL\hal_pmm.d" "HAL\hal_timerA1.d" "HAL\hal_ucs.d" "HAL\hal_wdt.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
